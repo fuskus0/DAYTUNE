@@ -1,6 +1,7 @@
+import{startLib}from'./library.js';
 export function start(A){
 const{S,save,DB,$,esc,PN,WX}=A,R={},SIT=['Casa','Paseando','Tren','Coche','Autobús','Otro'];
-const T={basic:'Basic',persona5:'Persona 5',wii:'Nintendo Wii',ds:'Nintendo DS',deltarune:'Deltarune'};
+const T={basic:'Basic',persona5:'Persona',wii:'Nintendo Wii',ds:'Nintendo DS',deltarune:'Deltarune'};
 const C=window.DAYTUNE_CONFIG||{},cfg=!!(C.url&&C.anonKey);let ses=JSON.parse(localStorage.getItem('dtses')||'null'),pt,rev=null,bufs=new Map(),cur='home';
 const sec=(id,t,b)=>{$('#'+id).innerHTML=`<h2 class=rz data-t="${t}"></h2>${b}`;A.theme()};
 const go=t=>{cur=t;document.querySelectorAll('.tab,nav button').forEach(x=>x.classList.remove('on'));$('#'+t).classList.add('on');document.querySelector(`nav [data-go=${t}]`)?.classList.add('on');R[t]?.();scrollTo(0,0)};
@@ -63,4 +64,5 @@ if(id==='aPush')tryA(async()=>{await push();alert('Preferencias guardadas en la 
 if(id==='aOut'){ses=null;localStorage.removeItem('dtses');R.set()}});
 document.addEventListener('change',e=>{const t=e.target;if(t.id==='sX')S.xfade=+t.value;else if(t.id==='sT')S.tick=t.checked;else if(t.id==='sE')S.eq=t.checked;else if(t.id==='sP')S.onP=t.value;else if(t.id==='sW')S.wxManual=t.value;
 else if(t.dataset.k)S.sched[t.dataset.k]=t.value;else if(t.dataset.sc){const[x,k]=t.dataset.sc.split('|');S.ctxCats??={};const L=S.ctxCats[x]??=[];t.checked?L.push(k):L.splice(L.indexOf(k),1)}else return;save();A.clock()});
-if(S.wiz!=='done')wiz()}
+if(!T[S.theme]){S.theme='basic';A.theme()}
+startLib(A,T);if(S.wiz!=='done')wiz()}

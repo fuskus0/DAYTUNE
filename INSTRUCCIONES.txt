@@ -17,3 +17,9 @@ DAYTUNE - INSTRUCCIONES
  - Al volver a la app no se reanuda automáticamente la canción anterior; la biblioteca y ajustes sí se conservan.
 8. AÑADIR CANCIONES: Biblioteca > Importar (selección múltiple). ✎ edita datos y situación, 🖼 portada, ♥/♡/▽ favorita/normal/menos frecuente.
 9. MODIFICAR: js/app.js (reproductor, selección), js/extras.js (secciones, Supabase, rebobinado, asistente), css/style.css (temas por [data-theme=...]). Para añadir un tema: CSS nuevo + una entrada en T de extras.js.
+
+EXPORTAR / IMPORTAR BIBLIOTECAS (.muslib)
+ - Biblioteca > Exportar biblioteca. A = solo datos (JSON .muslib: canciones, categorías, horarios, ajustes, tema, portadas). B = completa (ZIP con extensión .muslib: library.json + carpeta audio/). Límite ZIP: 4 GB.
+ - Biblioteca > Importar biblioteca: muestra un resumen; permite fusionar o sustituir, evitar duplicados (título+artista+juego), importar o no ajustes/tema y descargar copia de seguridad antes de sustituir.
+ - Canciones sin audio quedan marcadas "⚠ Falta el archivo" y NO se reproducen; usa "Localizar" (una) o "Localizar archivos que faltan" (varias, por nombre y tamaño).
+ - La ubicación del clima y los datos de sesión NO se exportan. El tema predeterminado es Básico; añadir un tema: entrada en T (js/extras.js) + CSS [data-theme=nombre].

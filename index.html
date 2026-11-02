@@ -1,5 +1,5 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>DAYTUNE</title><link rel="manifest" href="manifest.json"><link rel="icon" href="icon.svg"><meta name="theme-color" content="#d10000"><link rel="stylesheet" href="css/style.css"><script src="js/config.js"></script></head>
-<body data-theme="persona5"><div class="bg"></div><div id="wiz" hidden></div>
+<body data-theme="basic"><script>try{document.body.dataset.theme=JSON.parse(localStorage.dt).theme||"basic"}catch(e){}</script><div class="bg"></div><div id="wiz" hidden></div>
 <main>
 <section id="home" class="tab on">
  <div class="scr1"><div class="clockbox"><div id="clock">00:00</div></div><div id="date"></div>
@@ -11,7 +11,7 @@
  <label class="row">Temporizador <select id="sleep"><option value="0">Off</option><option>15</option><option>30</option><option>45</option><option>60</option><option value="c">Personalizado…</option></select></label>
  <label class="row">Modo <select id="mode"><option value="shuffle">Aleatorio</option><option value="list">Orden de lista</option><option value="repeat">Repetir canción</option></select></label></div>
 </section>
-<section id="lib" class="tab"><h2 class="rz" data-t="Biblioteca"></h2><label class="btn">Importar canciones<input type="file" id="imp" accept="audio/*" multiple hidden></label><label class="row"><input type="checkbox" id="onlyFav"> Solo favoritas</label><div id="list"></div><input type="file" id="coverIn" accept="image/*" hidden></section>
+<section id="lib" class="tab"><h2 class="rz" data-t="Biblioteca"></h2><label class="btn">Importar canciones<input type="file" id="imp" accept="audio/*" multiple hidden></label><label class="row"><input type="checkbox" id="onlyFav"> Solo favoritas</label><div class="row" id="libTools"><button id="lbExp">Exportar biblioteca</button><button id="lbImp">Importar biblioteca</button><button id="lbRel">Localizar archivos que faltan</button></div><input type="file" id="lbFile" hidden><div id="list"></div><input type="file" id="coverIn" accept="image/*" hidden></section>
 <section id="favs" class="tab"></section><section id="cats" class="tab"></section><section id="sched" class="tab"></section><section id="weather" class="tab"></section><section id="look" class="tab"></section><section id="set" class="tab"></section>
 <section id="more" class="tab"><h2 class="rz" data-t="Más"></h2><div class="grid"><button data-go="cats">Categorías</button><button data-go="sched">Horarios</button><button data-go="weather">Clima</button><button data-go="look">Apariencia</button><button data-go="set">Ajustes</button></div></section>
 </main>

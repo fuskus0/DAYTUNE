@@ -80,3 +80,9 @@ input[type=text],input[type=email],input[type=password],input:not([type]){paddin
 [data-theme=deltarune] nav{background:#000;border-top:4px solid #fff;gap:4px}[data-theme=deltarune] nav button{border:0;color:#fff}[data-theme=deltarune] nav .on{color:#ffe14a}[data-theme=deltarune] nav .on::before{content:'♥ ';color:#f33}
 [data-theme=deltarune] .song{border-color:#fff}[data-theme=deltarune] h2{color:#ffe14a}
 [data-theme=deltarune] #np b::after{content:'_';animation:bl2 1s steps(1) infinite}@keyframes bl2{50%{opacity:0}}
+/* ===== BASIC refinado + diálogos ===== */
+[data-theme=basic] .scr1,[data-theme=basic] .scr2{background:#fff;border-radius:20px;padding:18px;box-shadow:0 2px 12px #0001}
+[data-theme=basic] #clock{color:#222}[data-theme=basic] button:active{background:#eee}[data-theme=basic] nav{box-shadow:0 -2px 10px #0001}
+dialog{width:min(92vw,480px);max-height:88vh;overflow:auto;background:#fff;color:#111;border:2px solid #888;border-radius:12px;padding:16px;font-family:system-ui,sans-serif}
+dialog::backdrop{background:#000a}dialog button{color:#111;background:#eee;border:1px solid #888;border-radius:8px;transform:none}dialog *{font-family:system-ui,sans-serif!important}
+body[data-theme=persona5] dialog,body[data-theme=deltarune] dialog{background:#000;color:#fff;border-color:#fff}body[data-theme=persona5] dialog button,body[data-theme=deltarune] dialog button{background:#222;color:#fff;border-color:#fff}
