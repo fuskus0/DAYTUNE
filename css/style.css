@@ -86,3 +86,25 @@ input[type=text],input[type=email],input[type=password],input:not([type]){paddin
 dialog{width:min(92vw,480px);max-height:88vh;overflow:auto;background:#fff;color:#111;border:2px solid #888;border-radius:12px;padding:16px;font-family:system-ui,sans-serif}
 dialog::backdrop{background:#000a}dialog button{color:#111;background:#eee;border:1px solid #888;border-radius:8px;transform:none}dialog *{font-family:system-ui,sans-serif!important}
 body[data-theme=persona5] dialog,body[data-theme=deltarune] dialog{background:#000;color:#fff;border-color:#fff}body[data-theme=persona5] dialog button,body[data-theme=deltarune] dialog button{background:#222;color:#fff;border-color:#fff}
+/* ===== RELOJ ANALÓGICO ===== */
+[data-theme=basic]{--ac:#3b82f6}[data-theme=persona5]{--ac:#d10000}[data-theme=wii]{--ac:#3fa7ff}[data-theme=ds]{--ac:#e8403c}[data-theme=deltarune]{--ac:#ffe14a}
+#aclock{display:block;width:min(70vw,320px,38vh);height:auto;margin:4px auto 10px;overflow:visible}@media(min-width:900px){#aclock{width:min(380px,44vh)}}
+body.an #clock{font-size:clamp(2rem,9vw,3rem)}body.an .clockbox{display:block;text-align:center;width:max-content;margin:0 auto}body.an #date,body.an .chips{text-align:center;justify-content:center}
+.face{fill:#fff;stroke:#e1e1e1;stroke-width:3}.tk{stroke:#aaa;stroke-width:1}.tk5{stroke:#222;stroke-width:2.5}.nm{fill:#222;font:600 13px system-ui,sans-serif}
+.hh{stroke:#222;stroke-width:5;stroke-linecap:round}.hm{stroke:#222;stroke-width:3.5;stroke-linecap:round}.hs{stroke:var(--ac);stroke-width:1.6;stroke-linecap:round}.cap{fill:var(--ac)}
+[data-theme=basic] #aclock{filter:drop-shadow(0 6px 14px #0002)}
+[data-theme=persona5] #aclock{transform:rotate(-4deg);filter:drop-shadow(8px 8px 0 #d10000)}
+[data-theme=persona5] .face{fill:#000;stroke:#fff;stroke-width:5}[data-theme=persona5] .tk{stroke:#fff}[data-theme=persona5] .tk5{stroke:#fff;stroke-width:3.5}[data-theme=persona5] .nm{fill:#fff;font:400 15px Impact,'Arial Black',sans-serif}
+[data-theme=persona5] .hh{stroke:#fff;stroke-width:8;stroke-linecap:butt}[data-theme=persona5] .hm{stroke:#fff;stroke-width:5;stroke-linecap:butt}[data-theme=persona5] .hs{stroke:#fff;stroke-width:2}[data-theme=persona5] .cap{fill:#d10000;stroke:#fff;stroke-width:2}
+[data-theme=wii] #aclock{filter:drop-shadow(0 8px 10px #5a8bb877)}[data-theme=wii] .face{fill:#f5faff;stroke:#9cc3e6;stroke-width:6}[data-theme=wii] .tk{stroke:#b8d3ec}[data-theme=wii] .tk5{stroke:#3fa7ff;stroke-width:3;stroke-linecap:round}
+[data-theme=wii] .nm{fill:#2a6fb5;font:400 13px 'Trebuchet MS',sans-serif}[data-theme=wii] .hh{stroke:#3a8bd6;stroke-width:6}[data-theme=wii] .hm{stroke:#3a8bd6;stroke-width:4}[data-theme=wii] .hs{stroke:#7bc4ff}
+[data-theme=ds] #aclock{shape-rendering:crispEdges}[data-theme=ds] .face{fill:#e8f0e0;stroke:#3b3f4a;stroke-width:9}[data-theme=ds] .tk{stroke:#3b3f4a}[data-theme=ds] .tk5{stroke:#3b3f4a;stroke-width:4}[data-theme=ds] .nm{fill:#3b3f4a;font:700 13px 'Courier New',monospace}
+[data-theme=ds] .hh{stroke:#3b3f4a;stroke-width:8;stroke-linecap:square}[data-theme=ds] .hm{stroke:#3b3f4a;stroke-width:5;stroke-linecap:square}[data-theme=ds] .hs{stroke:#e8403c;stroke-width:2.5;stroke-linecap:square}
+[data-theme=deltarune] .face{fill:#000;stroke:#fff;stroke-width:6}[data-theme=deltarune] .tk{stroke:#4a4ab8}[data-theme=deltarune] .tk5{stroke:#fff;stroke-width:3}[data-theme=deltarune] .nm{fill:#ffe14a;font:700 13px 'Courier New',monospace}
+[data-theme=deltarune] .hh{stroke:#fff;stroke-width:6;stroke-linecap:square}[data-theme=deltarune] .hm{stroke:#fff;stroke-width:4;stroke-linecap:square}[data-theme=deltarune] .hs{stroke:#ffe14a;stroke-width:2}[data-theme=deltarune] .cap{fill:#f33}
+/* ===== WRAPPED ===== */
+.wcards{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wc{padding:12px;border:2px solid var(--ac);background:#8881;border-radius:10px;font-size:.8rem;min-width:0}.wc b{display:block;font-size:1.25rem;margin:2px 0;overflow-wrap:anywhere}
+.cols{display:flex;gap:3px;align-items:flex-end;height:120px;border-bottom:2px solid currentColor}.cols>div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;min-width:0}.cols i{display:block;width:100%;background:var(--ac);min-height:1px}.cols small{font-size:.6rem;overflow:hidden}
+.br{position:relative;display:grid;grid-template-columns:minmax(70px,30%) 1fr auto;gap:6px;align-items:center;margin:5px 0;font-size:.85rem}.br span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.br i{display:block;height:14px;background:var(--ac)}.br em{font-style:normal;font-size:.75rem}
+[data-theme=persona5] .wc{border-radius:0;transform:skew(-4deg);background:#000;border-color:#fff;box-shadow:5px 5px 0 #d10000}[data-theme=ds] .wc,[data-theme=deltarune] .wc{border-radius:0}[data-theme=wii] .wc{background:#fff;border-radius:22px;border-color:#cfe0f0}
+nav button{font-size:.85rem}

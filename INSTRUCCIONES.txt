@@ -23,3 +23,9 @@ EXPORTAR / IMPORTAR BIBLIOTECAS (.muslib)
  - Biblioteca > Importar biblioteca: muestra un resumen; permite fusionar o sustituir, evitar duplicados (título+artista+juego), importar o no ajustes/tema y descargar copia de seguridad antes de sustituir.
  - Canciones sin audio quedan marcadas "⚠ Falta el archivo" y NO se reproducen; usa "Localizar" (una) o "Localizar archivos que faltan" (varias, por nombre y tamaño).
  - La ubicación del clima y los datos de sesión NO se exportan. El tema predeterminado es Básico; añadir un tema: entrada en T (js/extras.js) + CSS [data-theme=nombre].
+
+MI WRAPPED (ESTADÍSTICAS) Y RELOJ
+ - Pestaña "Wrapped": semana, mes, año, histórico o fechas personalizadas, con flechas para ver periodos anteriores. Tarjetas (tiempo, reproducciones, terminadas/parciales, canción/artista/categoría top, día más activo), gráfico de actividad y rankings.
+ - Solo cuenta el tiempo REAL en que suena el audio (avance del reproductor): pausas, buffering y silencios no suman. Se guarda cada pocos segundos en IndexedDB (almacén "stats") y se incluye en exportar/importar .muslib (al fusionar se conserva el mayor valor por canción y día para no duplicar al reimportar el mismo archivo).
+ - Limitaciones: durante un crossfade suenan dos canciones y cada una suma su tiempo. Si se cierra el navegador de golpe, la última canción conserva su tiempo pero puede no clasificarse como terminada/parcial. Si borras una canción, sus estadísticas se conservan con el título guardado.
+ - Reloj: antes solo existía el reloj DIGITAL; se ha añadido una esfera analógica grande (SVG) encima, manteniendo el digital debajo. Cada tema tiene su esfera. En Apariencia puedes elegir "Solo digital" para volver al aspecto anterior. Un tema nuevo puede registrar su esfera con window.DT_CLOCKS.nombre=()=>'<svg markup>'.

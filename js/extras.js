@@ -1,3 +1,4 @@
+import{startStats}from'./stats.js';import{startClock}from'./clock.js';
 import{startLib}from'./library.js';
 export function start(A){
 const{S,save,DB,$,esc,PN,WX}=A,R={},SIT=['Casa','Paseando','Tren','Coche','Autobús','Otro'];
@@ -58,11 +59,11 @@ if(id==='sCb'){const c=$('#sC').value;try{const r=(await(await fetch('https://ge
 if(id==='sG')navigator.geolocation.getCurrentPosition(async p=>{S.loc={lat:p.coords.latitude,lon:p.coords.longitude};save();await A.refreshWx();A.clock();alert('Ubicación guardada')},()=>alert('Permiso denegado. Usa una ciudad o el clima manual.'));
 if(id==='sPr'){alert(await navigator.storage.persist()?'Almacenamiento persistente concedido':'El navegador no lo ha concedido');R.set()}
 if(id==='sWz'){S.wiz=0;save();wiz()}
-if(id==='sDel'&&confirm('Se borrarán canciones y ajustes de este dispositivo')){await DB.clear();localStorage.clear();location.reload()}
+if(id==='sDel'&&confirm('Se borrarán canciones y ajustes de este dispositivo')){await DB.clear();await DB.sClear();localStorage.clear();location.reload()}
 if(id==='aIn'||id==='aUp')tryA(async()=>{const em={email:$('#aE').value,password:$('#aP').value};if(id==='aUp'){const j=await auth('signup',em);if(!j.access_token)return alert('Cuenta creada. Confirma tu email y luego entra.');setSes(j)}else setSes(await auth('token?grant_type=password',em));await pull();await push();R.set()});
 if(id==='aPush')tryA(async()=>{await push();alert('Preferencias guardadas en la nube')});if(id==='aPull')tryA(pull);
 if(id==='aOut'){ses=null;localStorage.removeItem('dtses');R.set()}});
 document.addEventListener('change',e=>{const t=e.target;if(t.id==='sX')S.xfade=+t.value;else if(t.id==='sT')S.tick=t.checked;else if(t.id==='sE')S.eq=t.checked;else if(t.id==='sP')S.onP=t.value;else if(t.id==='sW')S.wxManual=t.value;
 else if(t.dataset.k)S.sched[t.dataset.k]=t.value;else if(t.dataset.sc){const[x,k]=t.dataset.sc.split('|');S.ctxCats??={};const L=S.ctxCats[x]??=[];t.checked?L.push(k):L.splice(L.indexOf(k),1)}else return;save();A.clock()});
 if(!T[S.theme]){S.theme='basic';A.theme()}
-startLib(A,T);if(S.wiz!=='done')wiz()}
+A.R=R;startStats(A,T);startClock(A,T);startLib(A,T);if(S.wiz!=='done')wiz()}

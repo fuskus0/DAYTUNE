@@ -2,7 +2,7 @@
 <body data-theme="basic"><script>try{document.body.dataset.theme=JSON.parse(localStorage.dt).theme||"basic"}catch(e){}</script><div class="bg"></div><div id="wiz" hidden></div>
 <main>
 <section id="home" class="tab on">
- <div class="scr1"><div class="clockbox"><div id="clock">00:00</div></div><div id="date"></div>
+ <div class="scr1"><svg id="aclock" viewBox="0 0 200 200" role="img" aria-label="Reloj analógico"></svg><div class="clockbox"><div id="clock">00:00</div></div><div id="date"></div>
  <div class="chips"><span id="wx">—</span><span id="per">—</span><select id="ctxSel"><option value="">En casa</option><option>Paseando</option><option>Tren</option><option>Coche</option><option>Autobús</option><option>Otro</option></select></div>
  <div id="np"><div class="disc"><img id="cover" alt=""></div><div><b id="title" class="rz">Sin música</b><small id="artist"></small></div></div></div>
  <div class="scr2"><input type="range" id="seek" min="0" max="1000" value="0"><div class="times"><span id="tc">0:00</span><span id="td">0:00</span></div>
@@ -12,8 +12,8 @@
  <label class="row">Modo <select id="mode"><option value="shuffle">Aleatorio</option><option value="list">Orden de lista</option><option value="repeat">Repetir canción</option></select></label></div>
 </section>
 <section id="lib" class="tab"><h2 class="rz" data-t="Biblioteca"></h2><label class="btn">Importar canciones<input type="file" id="imp" accept="audio/*" multiple hidden></label><label class="row"><input type="checkbox" id="onlyFav"> Solo favoritas</label><div class="row" id="libTools"><button id="lbExp">Exportar biblioteca</button><button id="lbImp">Importar biblioteca</button><button id="lbRel">Localizar archivos que faltan</button></div><input type="file" id="lbFile" hidden><div id="list"></div><input type="file" id="coverIn" accept="image/*" hidden></section>
-<section id="favs" class="tab"></section><section id="cats" class="tab"></section><section id="sched" class="tab"></section><section id="weather" class="tab"></section><section id="look" class="tab"></section><section id="set" class="tab"></section>
+<section id="favs" class="tab"></section><section id="wrapped" class="tab"></section><section id="cats" class="tab"></section><section id="sched" class="tab"></section><section id="weather" class="tab"></section><section id="look" class="tab"></section><section id="set" class="tab"></section>
 <section id="more" class="tab"><h2 class="rz" data-t="Más"></h2><div class="grid"><button data-go="cats">Categorías</button><button data-go="sched">Horarios</button><button data-go="weather">Clima</button><button data-go="look">Apariencia</button><button data-go="set">Ajustes</button></div></section>
 </main>
-<nav><button data-go="home" class="on">Inicio</button><button data-go="lib">Biblioteca</button><button data-go="favs">Favoritos</button><button data-go="more">Más</button></nav>
+<nav><button data-go="home" class="on">Inicio</button><button data-go="lib">Biblioteca</button><button data-go="favs">Favoritos</button><button data-go="wrapped">Wrapped</button><button data-go="more">Más</button></nav>
 <script type="module" src="js/app.js"></script></body></html>

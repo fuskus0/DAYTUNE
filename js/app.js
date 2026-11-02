@@ -23,8 +23,8 @@ decks=[0,1].map(i=>{const a=new Audio();const g=ctx.createGain();g.gain.value=0;
 a.ontimeupdate=()=>{if(decks[cur].a!==a)return;ui(a);const r=a.duration-a.currentTime;if(!cross&&S.mode!=='repeat'&&isFinite(r)&&r<=S.xfade&&r>.5)next(true)};
 a.onended=()=>{if(decks[cur].a===a&&!cross)next(false)};return{a,g}})}
 function chime(){if(!S.tick||!ctx)return;const t=ctx.currentTime;[1200,1800].forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.06,t+.01+i*.12);g.gain.exponentialRampToValueAtTime(.0001,t+.7);o.connect(g).connect(ctx.destination);o.start(t+i*.12);o.stop(t+.8)})}
-async function play(s,mix){if(!s?.blob)return alert('Falta el archivo de audio de esta canción. Usa «Localizar» en la Biblioteca.');init();await ctx.resume();const o=decks[cur],n=decks[1-cur];if(n.a.src)URL.revokeObjectURL(n.a.src);
-if(!s.gain&&window.dtEq)await window.dtEq(s);n.a.src=URL.createObjectURL(s.blob);n.a.volume=Math.min(1,s.gain||1);await n.a.play();s.plays=(s.plays||0)+1;DB.put(s);if(now)hist.push(now);now=s;
+async function play(s,mix){if(!s?.blob)return alert('Falta el archivo de audio de esta canción. Usa «Localizar» en la Biblioteca.');init();await ctx.resume();const o=decks[cur],n=decks[1-cur];window.dtStat?.fin(n.a);if(n.a.src)URL.revokeObjectURL(n.a.src);
+if(!s.gain&&window.dtEq)await window.dtEq(s);n.a.src=URL.createObjectURL(s.blob);n.a.volume=Math.min(1,s.gain||1);await n.a.play();s.plays=(s.plays||0)+1;DB.put(s);if(now)hist.push(now);now=s;window.dtStat?.start(n.a,s);
 const t=ctx.currentTime,d=Math.max(.05,S.xfade);o.g.gain.cancelScheduledValues(t);n.g.gain.cancelScheduledValues(t);
 if(mix&&!o.a.paused&&S.xfade>0){const N=64,i=new Float32Array(N),u=new Float32Array(N);for(let k=0;k<N;k++){i[k]=Math.sin(k/(N-1)*Math.PI/2);u[k]=Math.cos(k/(N-1)*Math.PI/2)}
 n.g.gain.setValueCurveAtTime(i,t,d);o.g.gain.setValueCurveAtTime(u,t,d);cross=true;setTimeout(()=>{o.a.pause();cross=false},d*1000+50)}
@@ -40,7 +40,7 @@ const h=navigator.mediaSession.setActionHandler.bind(navigator.mediaSession);h('
 function ransom(el){const t=el.dataset.t??=el.textContent;el.textContent='';if(S.theme!=='persona5'){el.textContent=t;return}[...t].forEach((c,i)=>{if(!c.trim()){el.append(' ');return}const e=document.createElement('i');e.className='r'+(i*7+t.length)%4;e.textContent=c;el.append(e)})}
 function ui(a){const sk=$('#seek');if(a&&isFinite(a.duration)){sk.value=a.currentTime/a.duration*1000;$('#tc').textContent=fmt(a.currentTime);$('#td').textContent=fmt(a.duration)}
 $('#play').textContent=a&&!a.paused?'⏸':'▶';if(now){$('#title').dataset.t=now.title;ransom($('#title'));$('#artist').textContent=[now.artist,now.game].filter(Boolean).join(' · ');$('#favb').textContent=now.pref==='fav'?'♥':'♡';$('#cover').src=now.cover?URL.createObjectURL(now.cover):''}}
-function clock(){const d=new Date(),p=period();$('#clock').textContent=d.toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit'});$('#date').textContent=d.toLocaleDateString('es',{weekday:'long',day:'numeric',month:'long'});
+function clock(){const d=new Date(),p=period();window.dtTick?.(d);$('#clock').textContent=d.toLocaleTimeString('es',{hour:'2-digit',minute:'2-digit'});$('#date').textContent=d.toLocaleDateString('es',{weekday:'long',day:'numeric',month:'long'});
 $('#wx').textContent=wx()?WX[wx()]:'Clima: sin datos';$('#per').textContent=PN[p];
 if(lastP&&p!==lastP){chime();if(S.onP==='now'&&now&&ctx)next(true)}lastP=p}
 const meta1=f=>new Promise(r=>{const a=new Audio(),u=URL.createObjectURL(f);a.src=u;a.onloadedmetadata=()=>{URL.revokeObjectURL(u);r(a.duration||0)};a.onerror=()=>r(0)});
